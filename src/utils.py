@@ -42,37 +42,3 @@ def enhance_image(image):
     return cv2.normalize(img_e, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=0)
 
 
-def prepare_dataset(file_names):
-    '''
-    Coversion to grayscale and enhancement. Split into training and test set.
-    :param file_names: All fingerprint images as file names
-    :return: train_set, test_set: 2 dictionaries for training and test,
-             where the key is the name of the image and the value is the image itself
-    '''
-    train_set = {}
-    test_set = {}
-    data = []  # list of tuples
-    temp_label = get_image_class(file_names[0])  # sets the image class (101)
-
-    for filename in file_names:
-        img = cv2.imread(filename)
-        gray_img = grayscale_image(img)
-        img = enhance_image(gray_img)
-        label = get_image_label(filename)
-        if temp_label != get_image_class(filename):
-            train, test = split_dataset(data, 0.2)
-            train_set.update(train)
-            test_set.update(test)
-            temp_label = get_image_class(filename)
-            data = []
-
-        data.append((label, img))
-
-        if filename == file_names[len(file_names) - 1]:
-            train, test = split_dataset(data, 0.2)
-            train_set.update(train)
-            test_set.update(test)
-
-    return train_set, test_set
-
-
