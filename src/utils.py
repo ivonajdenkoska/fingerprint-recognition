@@ -42,3 +42,23 @@ def enhance_image(image):
     return cv2.normalize(img_e, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=0)
 
 
+def get_genuine_impostor_scores(all_scores, identical):
+    '''
+    Returns two arrays with the genuine and impostor scores.
+    The genuine match scores are obtained by matching feature sets
+    of the same class (same person) and the impostor match scores are obtained
+    by matching feature sets of different classes (different persons)
+    '''
+    genuine_scores = []
+    impostor_scores = []
+    for i in range(0, len(all_scores)):
+        if identical[i] == 1:
+            genuine_scores.append(all_scores[i][1])
+        else:
+            impostor_scores.append(all_scores[i][1])
+
+    return genuine_scores, impostor_scores
+
+
+
+
