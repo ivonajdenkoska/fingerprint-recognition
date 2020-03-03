@@ -7,7 +7,7 @@ Fingerprint recognition is probably the most mature biometric technique, which f
 ### Data
 The data consists of images of fingerprints, provided as part of [FVC2002](http://bias.csr.unibo.it/fvc2002/databases.asp): the Second International Competition for Fingerprint Verification Algorithms. There are 4 available datasets and we chose to work with the second dataset: DB2, which consists of 80 images of fingerprints that belong to 10 different individuals (or classes), which gives 8 images per person.
 
-### Enhancment techniques
+### Enhancement techniques
 Each fingerprint image is converted to grayscale and it is enchanced by using the [Fingerprint-Enhancement-Python](https://github.com/Utkarsh-Deshmukh/Fingerprint-Enhancement-Python) library for fingerprints enhancement. The library uses oriented Gabor filter (a linear filter in image processing used for texture analysis) to enhance the fingerprint image.
 
 ### Implementation
